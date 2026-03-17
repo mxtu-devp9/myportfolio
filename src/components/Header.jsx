@@ -79,14 +79,14 @@ const Header = () => {
               </button>
             </div>
     
-            {/* Mobile Navigation */}
+            {/* Mobile Navigation — fixed with glass blur */}
             {isMobileMenuOpen && (
-              <div className="md:hidden mt-4 pb-4 space-y-3">
+              <div className="md:hidden mt-4 pb-4 px-4 space-y-3 rounded-2xl backdrop-blur-xl bg-black/60 border border-white/10 shadow-xl">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm font-medium py-2"
+                    className="block w-full text-left text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm font-medium py-2 border-b border-white/5"
                   >
                     {item.label}
                   </button>
