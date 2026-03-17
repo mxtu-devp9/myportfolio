@@ -8,6 +8,10 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const project = portfolioData.projects.find(p => p.id === parseInt(id));
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!project) {
     return (
       <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center">
