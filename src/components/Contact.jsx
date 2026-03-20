@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
 import { portfolioData } from '../mock/portfolioData';
-import { toast } from '../hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { contact } = portfolioData;
@@ -10,14 +10,36 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState(null); // 'success' | 'error' | null
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast({
-      title: 'Message Sent!',
-      description: 'Thank you for reaching out. I\'ll get back to you soon!',
-    });
-    setFormData({ name: '', email: '', message: '' });
+    setIsSending(true);
+    setStatus(null);
+
+    try {
+      await emailjs.send(
+        'service_7gcv04n',       // ← replace with your EmailJS Service ID
+        'template_2j1xmqf',      // ← replace with your EmailJS Template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: 'mitenmistry09@gmail.com',
+        },
+        'lTvxkygHtOLeiuOun'        // ← replace with your EmailJS Public Key
+      );
+
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      setStatus('error');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -96,6 +118,23 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
+
+            {/* Success Message */}
+            {status === 'success' && (
+              <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
+                <p className="text-green-400 font-medium">✅ Message sent successfully!</p>
+                <p className="text-green-400/70 text-sm mt-1">I will get back to you soon.</p>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {status === 'error' && (
+              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl">
+                <p className="text-red-400 font-medium">❌ Failed to send message.</p>
+                <p className="text-red-400/70 text-sm mt-1">Please try again or email me directly.</p>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -147,10 +186,11 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                disabled={isSending}
+                className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-xl font-medium hover:shadow-lg hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 <Send size={18} />
-                <span>Send Message</span>
+                <span>{isSending ? 'Sending...' : 'Send Message'}</span>
               </button>
             </form>
           </div>
