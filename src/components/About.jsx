@@ -18,11 +18,11 @@ const About = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
               <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 h-96 flex items-center justify-center">
                 <div className="text-center">
-                  <img
-                    src="/prof photo.jpeg"
-                    alt="Profile"
-                    className="w-80 h-80 mx-auto rounded-full object-top border-4 border-cyan-400 shadow-lg shadow-cyan-500/30"
-                  />
+                <img
+                src="pic.jpg"
+                alt="Profile"
+                className="w-48 h-48 mx-auto rounded-2xl object-cover border-2 border-cyan-400/50 shadow-[0_0_30px_rgba(34,211,238,0.4)] hover:shadow-[0_0_50px_rgba(34,211,238,0.6)] transition-shadow duration-300"
+              />
                 </div>
               </div>
             </div>
