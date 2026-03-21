@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import { portfolioData } from '../mock/portfolioData';
 
 const Projects = () => {
   const { projects } = portfolioData;
   const [hoveredProject, setHoveredProject] = useState(null);
-  const navigate = useNavigate();
 
   return (
     <section id="projects" className="py-32 px-6">
@@ -19,10 +17,9 @@ const Projects = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              onClick={() => navigate(`/project/${project.id}`)}
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
-              className="group relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer"
+              className="group relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300"
             >
               {/* Project Image */}
               <div className="relative h-48 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 overflow-hidden flex items-center justify-center">
@@ -68,14 +65,14 @@ const Projects = () => {
                 {/* Links */}
                 <div className="flex gap-4">
                   <button
-                    onClick={(e) => { e.stopPropagation(); window.open(project.link, '_blank'); }}
+                    onClick={() => window.open(project.link, '_blank')}
                     className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm"
                   >
                     <ExternalLink size={16} />
                     <span>Live Demo</span>
                   </button>
                   <button
-                    onClick={(e) => { e.stopPropagation(); window.open(project.github, '_blank'); }}
+                    onClick={() => window.open(project.github, '_blank')}
                     className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm"
                   >
                     <Github size={16} />
