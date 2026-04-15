@@ -47,7 +47,6 @@ export const portfolioData = {
       imageSize: "w-40 h-40",
       description: "A full-featured platform with real-time inventory management, payment processing, and admin dashboard for Parking in Metropolitan cities.",
       fullDescription: "SmartParking is a comprehensive parking and car rental management solution designed for metropolitan cities. It allows users to find, book, and pay for parking spots in real time. The car rental module lets users browse available vehicles, make reservations, and process payments securely via Stripe. The admin dashboard provides full control over inventory, pricing, and analytics.",
-
       technologies: ["SwiftUI", "Swift", "Stripe", "Storyboard", "CoreData", "MapKit"],
       link: "https://mxtu-devp9.github.io/Parking-n-Car-Rental-/",
       github: "https://github.com/mxtu-devp9/Parking-n-Car-Rental-"
@@ -59,7 +58,6 @@ export const portfolioData = {
       imageSize: "w-40 h-40",
       description: "An online superstore application for user where they can buy there daily essentials at one place and get delivered at their homes within 30 minutes.",
       fullDescription: "A full-featured online supermarket app built with Swift and SwiftUI. Users can browse categories, add items to cart, track orders in real time using MapKit, and pay securely via Stripe. The app supports user authentication, order history, and push notifications for delivery updates.",
-     
       technologies: ["Swift", "SwiftUI", "CoreData", "Stripe", "Mapkit", "Storyboard"],
       link: "#",
       github: "#"
@@ -71,7 +69,6 @@ export const portfolioData = {
       imageSize: "w-40 h-40",
       description: "Native iOS app for tracking workouts, nutrition, and progress with HealthKit integration and beautiful charts.",
       fullDescription: "A native iOS fitness app built with SwiftUI that integrates with Apple HealthKit to track workouts, calories, and progress over time. Features beautiful animated charts, custom workout plans, daily nutrition logging, and weekly progress reports to help users stay on track with their fitness goals.",
-      
       technologies: ["Swift", "SwiftUI", "CoreData", "HealthKit"],
       link: "#",
       github: "#"
@@ -83,7 +80,6 @@ export const portfolioData = {
       imageSize: "w-40 h-40",
       description: "A modern and responsive personal portfolio website built with React and Tailwind CSS, showcasing my projects, skills, and experience as a Full Stack & iOS Developer.",
       fullDescription: "A modern and responsive personal portfolio website built with React and Tailwind CSS. Features smooth animations, a dark theme, multi-language support, project showcase with detail pages, skills with progress bars, experience timeline, and a working contact form.",
-
       technologies: ["React", "JavaScript", "CSS"],
       link: "#",
       github: "#"
@@ -110,30 +106,39 @@ export const portfolioData = {
       technologies: ["Swift", "UIKit", "CoreData", "API"],
       link: "#",
       github: "#"
-      
-
     },
+  
     {
       id: 7,
-      title: "Weather Forecast iOS App",
-      image: "images/weather-app.png",
-      imageSize: "w-40 h-40",
-      description: "Beautiful weather app with animated backgrounds, hourly forecasts, and location-based alerts.",
-      fullDescription: "A visually stunning iOS weather app that uses CoreLocation for real-time location detection and WeatherKit for accurate forecasts. Features animated backgrounds that change based on weather conditions, hourly and 7-day forecasts, customizable weather alerts, and a clean minimal UI built with UIKit.",
-      
-      technologies: ["Swift", "UIKit", "CoreLocation", "WeatherKit"],
-      link: "#",
-      github: "#"
-    },
-
-    {
-      id: 8,
       title: "Bucket List",
       image: "images/",
       imageSize: "w-40 h-40",
       description: "Application to manage and plan your next trip.",
       fullDescription: "An application to manage and plan your next trip with your loved ones.",
       technologies: ["Swift", "UIKit", "CoreData", "API", "SwiftUI"],
+      link: "#",
+      github: "#"
+    },
+    {
+      id: 8,
+      title: "Weather Forecast iOS App",
+      image: "images/weather-app.png",
+      imageSize: "w-40 h-40",
+      description: "Beautiful weather app with animated backgrounds, hourly forecasts, and location-based alerts.",
+      fullDescription: "A visually stunning iOS weather app that uses CoreLocation for real-time location detection and WeatherKit for accurate forecasts. Features animated backgrounds that change based on weather conditions, hourly and 7-day forecasts, customizable weather alerts, and a clean minimal UI built with UIKit.",
+      technologies: ["Swift", "UIKit", "CoreLocation", "WeatherKit"],
+      link: "#",
+      github: "#"
+    },
+
+    {
+      id: 9,
+      title: "Developer Tool App",
+      image: "images/",
+      imageSize: "w-40 h-40",
+      description: "",
+      fullDescription: "",
+      technologies: ["Swift", "UIKit", "CoreData", "API"],
       link: "#",
       github: "#"
     }
