@@ -47,18 +47,7 @@ export const portfolioData = {
       imageSize: "w-40 h-40",
       description: "A full-featured platform with real-time inventory management, payment processing, and admin dashboard for Parking in Metropolitan cities.",
       fullDescription: "SmartParking is a comprehensive parking and car rental management solution designed for metropolitan cities. It allows users to find, book, and pay for parking spots in real time. The car rental module lets users browse available vehicles, make reservations, and process payments securely via Stripe. The admin dashboard provides full control over inventory, pricing, and analytics.",
-      screenshots: [
-        "images/car-rent.png",
-        "images/car-rent.png",
-        "images/car-rent.png"
-      ],
-      techLevels: [
-        { name: "SwiftUI", level: 90 },
-        { name: "Swift", level: 88 },
-        { name: "Stripe", level: 75 },
-        { name: "CoreData", level: 85 },
-        { name: "MapKit", level: 80 }
-      ],
+
       technologies: ["SwiftUI", "Swift", "Stripe", "Storyboard", "CoreData", "MapKit"],
       link: "https://mxtu-devp9.github.io/Parking-n-Car-Rental-/",
       github: "https://github.com/mxtu-devp9/Parking-n-Car-Rental-"
@@ -70,18 +59,7 @@ export const portfolioData = {
       imageSize: "w-40 h-40",
       description: "An online superstore application for user where they can buy there daily essentials at one place and get delivered at their homes within 30 minutes.",
       fullDescription: "A full-featured online supermarket app built with Swift and SwiftUI. Users can browse categories, add items to cart, track orders in real time using MapKit, and pay securely via Stripe. The app supports user authentication, order history, and push notifications for delivery updates.",
-      screenshots: [
-        "images/grocery-cart.png",
-        "images/grocery-cart.png",
-        "images/grocery-cart.png"
-      ],
-      techLevels: [
-        { name: "Swift", level: 90 },
-        { name: "SwiftUI", level: 88 },
-        { name: "CoreData", level: 85 },
-        { name: "Stripe", level: 75 },
-        { name: "MapKit", level: 80 }
-      ],
+     
       technologies: ["Swift", "SwiftUI", "CoreData", "Stripe", "Mapkit", "Storyboard"],
       link: "#",
       github: "#"
@@ -93,17 +71,7 @@ export const portfolioData = {
       imageSize: "w-40 h-40",
       description: "Native iOS app for tracking workouts, nutrition, and progress with HealthKit integration and beautiful charts.",
       fullDescription: "A native iOS fitness app built with SwiftUI that integrates with Apple HealthKit to track workouts, calories, and progress over time. Features beautiful animated charts, custom workout plans, daily nutrition logging, and weekly progress reports to help users stay on track with their fitness goals.",
-      screenshots: [
-        "images/online-coach.png",
-        "images/online-coach.png",
-        "images/online-coach.png"
-      ],
-      techLevels: [
-        { name: "Swift", level: 90 },
-        { name: "SwiftUI", level: 88 },
-        { name: "CoreData", level: 85 },
-        { name: "HealthKit", level: 80 }
-      ],
+      
       technologies: ["Swift", "SwiftUI", "CoreData", "HealthKit"],
       link: "#",
       github: "#"
@@ -115,17 +83,7 @@ export const portfolioData = {
       imageSize: "w-40 h-40",
       description: "A modern and responsive personal portfolio website built with React and Tailwind CSS, showcasing my projects, skills, and experience as a Full Stack & iOS Developer.",
       fullDescription: "A modern and responsive personal portfolio website built with React and Tailwind CSS. Features smooth animations, a dark theme, multi-language support, project showcase with detail pages, skills with progress bars, experience timeline, and a working contact form.",
-      screenshots: [
-        "images/portofolio.png",
-        "images/portofolio.png",
-        "images/portofolio.png"
-      ],
-      techLevels: [
-        { name: "React", level: 85 },
-        { name: "JavaScript", level: 82 },
-        { name: "Tailwind CSS", level: 92 },
-        { name: "CSS", level: 88 }
-      ],
+
       technologies: ["React", "JavaScript", "CSS"],
       link: "#",
       github: "#"
@@ -137,43 +95,49 @@ export const portfolioData = {
       imageSize: "w-40 h-40",
       description: "An coaching application which can help people to practice and give idea about interviews for getting cracked jobs interview in real time.",
       fullDescription: "An AI-powered interview coaching app built with SwiftUI that helps users prepare for job interviews. Features mock interview sessions, real-time feedback on answers, a library of common interview questions by industry, progress tracking, and tips for improving communication skills.",
-      screenshots: [
-        "images/coaching.png",
-        "images/coaching.png",
-        "images/coaching.png"
-      ],
-      techLevels: [
-        { name: "SwiftUI", level: 88 },
-        { name: "Swift", level: 90 },
-        { name: "CoreData", level: 82 },
-        { name: "API", level: 78 }
-      ],
       technologies: ["SwiftUI", "Swift", "CoreData", "API"],
       link: "#",
       github: "#"
     },
+
     {
       id: 6,
+      title: "Budget Buddy",
+      image: "images/",
+      imageSize: "w-40 h-40",
+      description: "App to track monthly expense",
+      fullDescription: "",
+      technologies: ["Swift", "UIKit", "CoreData", "API"],
+      link: "#",
+      github: "#"
+      
+
+    },
+    {
+      id: 7,
       title: "Weather Forecast iOS App",
       image: "images/weather-app.png",
       imageSize: "w-40 h-40",
       description: "Beautiful weather app with animated backgrounds, hourly forecasts, and location-based alerts.",
       fullDescription: "A visually stunning iOS weather app that uses CoreLocation for real-time location detection and WeatherKit for accurate forecasts. Features animated backgrounds that change based on weather conditions, hourly and 7-day forecasts, customizable weather alerts, and a clean minimal UI built with UIKit.",
-      screenshots: [
-        "images/weather-app.png",
-        "images/weather-app.png",
-        "images/weather-app.png"
-      ],
-      techLevels: [
-        { name: "Swift", level: 90 },
-        { name: "UIKit", level: 85 },
-        { name: "CoreLocation", level: 82 },
-        { name: "WeatherKit", level: 78 }
-      ],
+      
       technologies: ["Swift", "UIKit", "CoreLocation", "WeatherKit"],
       link: "#",
       github: "#"
+    },
+
+    {
+      id: 8,
+      title: "Bucket List",
+      image: "images/",
+      imageSize: "w-40 h-40",
+      description: "Application to manage and plan your next trip.",
+      fullDescription: "An application to manage and plan your next trip with your loved ones.",
+      technologies: ["Swift", "UIKit", "CoreData", "API", "SwiftUI"],
+      link: "#",
+      github: "#"
     }
+
   ],
   experience: [
     {
