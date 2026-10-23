@@ -62,6 +62,10 @@ export const portfolioData = {
       link: "#",
       github: "#"
     },
+
+    {
+      
+    },
     {
       id: 3,
       title: "Fitness Tracking iOS App",
@@ -99,7 +103,7 @@ export const portfolioData = {
     {
       id: 6,
       title: "Budget Buddy",
-      image: "images/",
+      image: "images/expense.png",
       imageSize: "w-40 h-40",
       description: "App to track monthly expense",
       fullDescription: "",
@@ -111,7 +115,7 @@ export const portfolioData = {
     {
       id: 7,
       title: "Bucket List",
-      image: "images/",
+      image: "images/transport.png",
       imageSize: "w-40 h-40",
       description: "Application to manage and plan your next trip.",
       fullDescription: "An application to manage and plan your next trip with your loved ones.",
@@ -134,7 +138,7 @@ export const portfolioData = {
     {
       id: 9,
       title: "Developer Tool App",
-      image: "images/",
+      image: "images/mobile-development.png",
       imageSize: "w-40 h-40",
       description: "",
       fullDescription: "",

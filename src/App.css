@@ -1,4 +1,17 @@
+
 .App {
   min-height: 100vh;
-  background-color: #0a0a0f;
+  background: var(--bg);
+}
+
+.site-shell {
+  min-height: 100vh;
+  overflow: clip;
+  background:
+    radial-gradient(
+      ellipse at 80% 12%,
+      rgba(57, 112, 96, 0.09),
+      transparent 34%
+    ),
+    var(--bg);
 }

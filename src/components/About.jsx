@@ -1,60 +1,72 @@
-import React from 'react';
-import { portfolioData } from '../mock/portfolioData';
 
-const About = () => {
-  const { about } = portfolioData;
+import React from "react";
+import {
+  Code2,
+  Smartphone,
+  Server,
+  GraduationCap,
+} from "lucide-react";
+import "./About.css";
 
+const highlights = [
+  {
+    icon: Code2,
+    title: "Full Stack Development",
+    description:
+      "Building responsive web applications with React, TypeScript, and modern frontend tools.",
+  },
+  {
+    icon: Smartphone,
+    title: "iOS Development",
+    description:
+      "Creating native iOS experiences using Swift, SwiftUI, and MVVM architecture.",
+  },
+  {
+    icon: Server,
+    title: "Backend Engineering",
+    description:
+      "Designing APIs, database systems, and scalable services with Python and PostgreSQL.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Continuous Learning",
+    description:
+      "Pursuing software engineering studies while building practical projects.",
+  },
+];
+
+export default function About() {
   return (
-    <section id="about" className="py-32 px-6">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center bg-gradient-to-r from-white to-cyan-400 bg-clip-text text-transparent">
-          About Me
-        </h2>
+    <section className="about-section" id="about">
+      <div className="about-container">
+        <header className="about-heading">
+          <span className="about-eyebrow">GET TO KNOW ME</span>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Image Section */}
-          <div className="order-2 md:order-1">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8 h-96 flex items-center justify-center">
-                <div className="text-center">
-                <img
-                src="pic.jpg"
-                alt="Profile"
-                className="w-48 h-48 mx-auto rounded-2xl object-cover border-2 border-cyan-400/50 shadow-[0_0_30px_rgba(34,211,238,0.4)] hover:shadow-[0_0_50px_rgba(34,211,238,0.6)] transition-shadow duration-300"
-              />
-                </div>
+          <h2>
+            Turning ideas into <span>digital experiences.</span>
+          </h2>
+
+          <p>
+            I'm Miten Mistry, a software developer interested in building
+            useful, reliable, and intuitive digital products across web,
+            mobile, and backend platforms.
+          </p>
+        </header>
+
+        <div className="about-grid">
+          {highlights.map(({ icon: Icon, title, description }) => (
+            <article className="about-card" key={title}>
+              <div className="about-icon" aria-hidden="true">
+                <Icon size={22} strokeWidth={1.8} />
               </div>
-            </div>
-          </div>
 
-          {/* Content */}
-          <div className="order-1 md:order-2">
-            <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-8">
-              <p className="text-gray-300 leading-relaxed mb-8 text-lg">
-                {about.text}
-              </p>
+              <h3>{title}</h3>
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 gap-6">
-                {about.stats.map((stat, index) => (
-                  <div
-                    key={index}
-                    className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:scale-105 transition-all duration-300"
-                  >
-                    <div className="text-3xl font-bold text-cyan-400 mb-1">
-                      {stat.value}
-                    </div>
-                    <div className="text-gray-400 text-sm">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+              <p>{description}</p>
+            </article>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default About;
+}

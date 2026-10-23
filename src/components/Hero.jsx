@@ -1,125 +1,240 @@
-import React, { useEffect, useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { portfolioData } from '../mock/portfolioData';
-import { useLanguage } from '../context/LanguageContext';
+import "./Hero.css";
+import React from "react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Github,
+  Linkedin,
+  Mail,
+  Languages,
+  MapPin,
+} from "lucide-react";
 
-const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const { t } = useLanguage();
+import { useLanguage } from "../context/LanguageContext";
+import { portfolioData } from "../mock/portfolioData";
+import "./Hero.css";
 
-  useEffect(() => {
-    setIsVisible(true);
+const RESUME_FILE = "/MistryMiten_CV.pdf";
 
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20
-      });
-    };
+export default function Hero() {
+  const { t, language, toggleLanguage } = useLanguage();
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  const hero = portfolioData?.hero ?? {};
+  const contact = portfolioData?.contact ?? {};
 
-  const { hero } = portfolioData;
+  const name = hero.name || "Miten Mistry";
+
+  // Keep translations working even if some keys are missing.
+  const translate = (key, fallback) => {
+    const value = t(key);
+    return !value || value === key ? fallback : value;
+  };
+
+  const greeting = translate(
+    "hero.greeting",
+    language === "de" ? "Hallo, ich bin" : "Hello, I'm"
+  );
+
+  const role = translate(
+    "hero.title",
+    language === "de"
+      ? "Full-Stack- & iOS-Entwickler"
+      : "Full Stack & iOS Developer"
+  );
+
+  const description = translate(
+    "hero.description",
+    language === "de"
+      ? "Ich entwickle skalierbare Webanwendungen und native iOS-Apps mit modernen Technologien."
+      : "Specialized in building scalable web applications and native iOS apps with modern technologies."
+  );
+
+  const projectsLabel = translate(
+    "hero.viewProjects",
+    language === "de" ? "Projekte ansehen" : "View Projects"
+  );
+
+  const cvLabel = translate(
+    "hero.downloadCV",
+    language === "de" ? "Lebenslauf herunterladen" : "Download CV"
+  );
+
+  const githubUrl = contact.github || "https://github.com/mxtu-devp9";
+  const linkedinUrl = contact.linkedin || "https://www.linkedin.com/";
+  const email = contact.email || "";
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"
-          style={{
-            top: '20%',
-            left: '10%',
-            transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-            transition: 'transform 0.3s ease-out'
-          }}
-        />
-        <div
-          className="absolute w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-          style={{
-            bottom: '20%',
-            right: '10%',
-            transform: `translate(${-mousePosition.x}px, ${-mousePosition.y}px)`,
-            transition: 'transform 0.3s ease-out'
-          }}
-        />
-      </div>
+    <section className="hero-section" id="home">
+      <div className="hero-container">
+        <div className="hero-copy">
+          <div className="hero-eyebrow">
+            <span className="hero-status-dot" />
+            <span>
+              {language === "de" ? "SOFTWAREENTWICKLER" : "SOFTWARE ENGINEER"}
+            </span>
+            <span className="hero-eyebrow-divider">/</span>
+            <span>BERLIN, GERMANY</span>
+          </div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <div
-          className={`transition-all duration-1000 transform ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}
-        >
-          {/* Glass Card */}
-          <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-12 shadow-2xl">
-            <div
-              className={`transition-all duration-1000 delay-200 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
+          <p className="hero-greeting">{greeting}</p>
+
+          <h1 className="hero-name">{name}</h1>
+
+          <h2 className="hero-role">{role}</h2>
+
+          <p className="hero-description">{description}</p>
+
+          <div className="hero-actions">
+            <a className="hero-button hero-button-primary" href="#projects">
+              {projectsLabel}
+              <ArrowRight size={17} />
+            </a>
+
+            <a
+              className="hero-button hero-button-secondary"
+              href={RESUME_FILE}
+              download
             >
-              <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-white via-cyan-200 to-blue-400 bg-clip-text text-transparent">
-                {hero.name}
-              </h1>
+              {cvLabel}
+              <ArrowUpRight size={17} />
+            </a>
+          </div>
+
+          <div className="hero-socials">
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub profile"
+            >
+              <Github size={16} />
+              <span>GitHub</span>
+            </a>
+
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn profile"
+            >
+              <Linkedin size={16} />
+              <span>LinkedIn</span>
+            </a>
+
+            {email && (
+              <a href={`mailto:${email}`} aria-label="Send email">
+                <Mail size={16} />
+                <span>Email</span>
+              </a>
+            )}
+          </div>
+        </div>
+
+        <div className="hero-visual" aria-label="Developer workspace preview">
+          <div className="hero-workspace">
+            <div className="workspace-topbar">
+              <div className="workspace-window-dots">
+                <span />
+                <span />
+                <span />
+              </div>
+              <span>workspace / portfolio</span>
             </div>
 
-            <div
-              className={`transition-all duration-1000 delay-300 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-            >
-              <h2 className="text-2xl md:text-3xl font-semibold text-cyan-400 mb-6">
-                {t('hero.title')}
-              </h2>
-            </div>
+            <div className="workspace-body">
+              <aside className="workspace-sidebar" aria-hidden="true">
+                <span className="workspace-monogram">M.</span>
+                <i className="workspace-sidebar-active" />
+                <i />
+                <i />
+                <i />
+              </aside>
 
-            <div
-              className={`transition-all duration-1000 delay-400 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-            >
-              <p className="text-xl text-gray-300 mb-4 max-w-3xl mx-auto">
-                {t('hero.subtitle')}
-              </p>
-              <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-                {t('hero.description')}
-              </p>
-            </div>
+              <div className="workspace-main">
+                <span className="workspace-kicker">
+                  PERSONAL WORKSPACE
+                </span>
 
-            <div
-              className={`transition-all duration-1000 delay-500 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-              }`}
-            >
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                  onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-medium hover:shadow-lg hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300"
-                >
-                  {t('hero.viewProjects')}
-                </button>
-                <button
-                  onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-3 backdrop-blur-xl bg-white/10 border border-white/20 text-white rounded-full font-medium hover:bg-white/20 hover:scale-105 transition-all duration-300"
-                >
-                  {t('hero.getInTouch')}
-                </button>
+                <h3>
+                  {language === "de"
+                    ? "Mit Leidenschaft entwickeln."
+                    : "Building with purpose."}
+                </h3>
+
+                <div className="workspace-stats">
+                  <div>
+                    <strong>01</strong>
+                    <span>Web</span>
+                  </div>
+                  <div>
+                    <strong>02</strong>
+                    <span>iOS</span>
+                  </div>
+                  <div>
+                    <strong>03</strong>
+                    <span>Backend</span>
+                  </div>
+                </div>
+
+                <div className="workspace-code-lines" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
               </div>
             </div>
+          </div>
+
+          <div className="hero-location-card">
+            <span className="hero-location-icon">
+              <MapPin size={17} />
+            </span>
+            <div>
+              <span>BASED IN</span>
+              <strong>Berlin, Germany</strong>
+            </div>
+          </div>
+
+          <div className="hero-toolkit-card">
+            <span className="hero-card-label">CURRENT TOOLKIT</span>
+            <div className="hero-toolkit-tags">
+              <span>React</span>
+              <span>SwiftUI</span>
+              <span>Python</span>
+            </div>
+          </div>
+
+          <div className="hero-profile-card">
+            <div className="hero-profile-monogram">MM</div>
+            <div>
+              <strong>{name}</strong>
+              <span>{role}</span>
+            </div>
+            <span className="hero-profile-status" />
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <ChevronDown className="text-cyan-400" size={32} />
-      </div>
+      <button
+        className="hero-language-shortcut"
+        type="button"
+        onClick={toggleLanguage}
+        aria-label={
+          language === "de"
+            ? "Switch language to English"
+            : "Sprache auf Deutsch umstellen"
+        }
+      >
+        <Languages size={16} />
+        {language === "de" ? "DE" : "EN"}
+      </button>
+
+      <a className="hero-scroll-indicator" href="#about">
+        <span>
+          {language === "de" ? "WEITER ENTDECKEN" : "SCROLL TO EXPLORE"}
+        </span>
+        <ArrowRight size={15} />
+      </a>
     </section>
   );
-};
-
-export default Hero;
+}
