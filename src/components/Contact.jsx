@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import "./Contact.css";
 
-const EMAIL = "YOUR_EMAIL@example.com";
+const EMAIL = "mitenmistry09@gmail.com";
 const GITHUB = "https://github.com/mxtu-devp9";
 const LINKEDIN = "https://www.linkedin.com/";
 

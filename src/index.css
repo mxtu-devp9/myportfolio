@@ -1,50 +1,55 @@
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-:root {
-  --background: #0b1012;
-  --background-secondary: #101719;
-  --surface: rgba(255, 255, 255, 0.045);
-  --surface-hover: rgba(255, 255, 255, 0.075);
-  --border: rgba(255, 255, 255, 0.1);
-
-  --text-primary: #f4f7f8;
-  --text-secondary: #a7b2ba;
-  --text-muted: #89979f;
-
-  --accent: #42d6c2;
-  --accent-hover: #68e5d4;
-
-  --container-width: 1120px;
-  --header-offset: 100px;
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #090b10;
+  --surface-bg: rgba(20, 25, 34, 0.78);
+  --surface-solid: #141922;
+  --text-primary: #f4f7fb;
+  --text-secondary: #a4afbd;
+  --border-color: rgba(255, 255, 255, 0.12);
+  --accent-color: #42d6c5;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --muted-bg: rgba(255, 255, 255, 0.04);
 }
 
-*,
-*::before,
-*::after {
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page-bg: #f4f7fb;
+  --surface-bg: rgba(255, 255, 255, 0.78);
+  --surface-solid: #ffffff;
+  --text-primary: #17212b;
+  --text-secondary: #586779;
+  --border-color: rgba(23, 33, 43, 0.13);
+  --accent-color: #087f8c;
+  --shadow-color: rgba(28, 47, 65, 0.09);
+  --muted-bg: rgba(23, 33, 43, 0.035);
+}
+
+* {
   box-sizing: border-box;
 }
 
 html {
-  margin: 0;
   min-height: 100%;
-  background: var(--background);
   scroll-behavior: smooth;
-  scroll-padding-top: var(--header-offset);
+  scroll-padding-top: 100px;
+  background: var(--page-bg);
 }
 
 body {
-  margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--background);
+  margin: 0;
+  background: var(--page-bg);
   color: var(--text-primary);
-  font-family: "DM Sans", sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
 }
 
 button,
@@ -58,54 +63,21 @@ button {
   color: inherit;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin-top: 0;
-  color: var(--text-primary);
-  font-family: "Space Grotesk", sans-serif;
-  line-height: 1.2;
-}
-
-p {
-  color: var(--text-secondary);
-}
-
 a {
   color: inherit;
-  -webkit-tap-highlight-color: transparent;
-}
-
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-}
-
-img,
-video,
-svg {
-  max-width: 100%;
 }
 
 img {
-  display: block;
+  max-width: 100%;
 }
 
 ::selection {
-  color: #071412;
-  background: var(--accent);
+  color: #071014;
+  background: var(--accent-color);
+}
+
+:focus-visible {
+  outline-color: var(--accent-color);
 }
 
 #root {
@@ -113,31 +85,39 @@ img {
 }
 
 .site-shell {
-  position: relative;
   min-height: 100vh;
-  overflow-x: clip;
-  background:
-    radial-gradient(
-      ellipse at 15% 0%,
-      rgba(66, 214, 194, 0.07),
-      transparent 38%
-    ),
-    radial-gradient(
-      ellipse at 90% 45%,
-      rgba(66, 214, 194, 0.025),
-      transparent 35%
-    ),
-    var(--background);
+  background: var(--page-bg);
+  color: var(--text-primary);
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
 }
 
-section[id] {
-  scroll-margin-top: var(--header-offset);
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--surface-bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
 }
 
-@media (max-width: 640px) {
-  :root {
-    --header-offset: 80px;
-  }
+.theme-toggle:hover {
+  border-color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -145,12 +125,161 @@ section[id] {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  body,
+  .site-shell,
+  .theme-toggle {
+    transition: none;
   }
+}
+
+
+/* ===== Light Theme: Readability Fix ===== */
+
+:root[data-theme="light"] {
+  --text-primary: #17212b;
+  --text-secondary: #526174;
+  --border-color: rgba(23, 33, 43, 0.16);
+  --surface-bg: rgba(255, 255, 255, 0.92);
+  --surface-solid: #ffffff;
+  --accent-color: #087f8c;
+  --shadow-color: rgba(28, 47, 65, 0.08);
+}
+
+/* General section text */
+:root[data-theme="light"] .site-shell,
+:root[data-theme="light"] .site-shell h1,
+:root[data-theme="light"] .site-shell h2,
+:root[data-theme="light"] .site-shell h3,
+:root[data-theme="light"] .site-shell h4 {
+  color: var(--text-primary);
+}
+
+:root[data-theme="light"] .site-shell p {
+  color: var(--text-secondary);
+}
+
+/* Education and experience timeline */
+:root[data-theme="light"] .experience-section,
+:root[data-theme="light"] .education-section {
+  color: var(--text-primary);
+}
+
+:root[data-theme="light"] .experience-section h1,
+:root[data-theme="light"] .experience-section h2,
+:root[data-theme="light"] .experience-section h3,
+:root[data-theme="light"] .education-section h1,
+:root[data-theme="light"] .education-section h2,
+:root[data-theme="light"] .education-section h3 {
+  color: #17212b;
+}
+
+:root[data-theme="light"] .experience-section p,
+:root[data-theme="light"] .education-section p {
+  color: #526174;
+}
+
+/* Timeline tags and labels */
+:root[data-theme="light"] .experience-section span,
+:root[data-theme="light"] .education-section span {
+  color: #526174;
+}
+
+/* Keep status labels and numbers accented */
+:root[data-theme="light"] .experience-section .status,
+:root[data-theme="light"] .education-section .status {
+  color: #087f8c;
+}
+
+/* Timeline cards */
+:root[data-theme="light"] .experience-card,
+:root[data-theme="light"] .education-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(23, 33, 43, 0.12);
+  box-shadow: 0 10px 28px rgba(28, 47, 65, 0.06);
+}
+
+
+/* =========================================
+   GLOBAL LIGHT THEME — TEXT CONTRAST FIX
+   ========================================= */
+
+:root[data-theme="light"] {
+  --text-primary: #17212b;
+  --text-secondary: #526174;
+  --muted-text: #526174;
+  --border-color: rgba(23, 33, 43, 0.16);
+  --surface-bg: rgba(255, 255, 255, 0.92);
+  --surface-solid: #ffffff;
+  --accent-color: #087f8c;
+  --shadow-color: rgba(28, 47, 65, 0.08);
+  --muted-bg: #edf2f7;
+}
+
+/* All common secondary text */
+:root[data-theme="light"] .site-shell p,
+:root[data-theme="light"] .site-shell small,
+:root[data-theme="light"] .site-shell li,
+:root[data-theme="light"] .site-shell label,
+:root[data-theme="light"] .site-shell figcaption {
+  color: #526174;
+}
+
+/* Headings and important text */
+:root[data-theme="light"] .site-shell h1,
+:root[data-theme="light"] .site-shell h2,
+:root[data-theme="light"] .site-shell h3,
+:root[data-theme="light"] .site-shell h4,
+:root[data-theme="light"] .site-shell h5,
+:root[data-theme="light"] .site-shell h6 {
+  color: #17212b;
+}
+
+/* Common grey utility classes */
+:root[data-theme="light"] .site-shell .text-gray-300,
+:root[data-theme="light"] .site-shell .text-gray-400,
+:root[data-theme="light"] .site-shell .text-gray-500,
+:root[data-theme="light"] .site-shell .text-slate-300,
+:root[data-theme="light"] .site-shell .text-slate-400,
+:root[data-theme="light"] .site-shell .text-slate-500,
+:root[data-theme="light"] .site-shell .text-zinc-300,
+:root[data-theme="light"] .site-shell .text-zinc-400,
+:root[data-theme="light"] .site-shell .text-zinc-500 {
+  color: #526174 !important;
+}
+
+/* Skills and technology tags */
+:root[data-theme="light"] .site-shell .skill-tag,
+:root[data-theme="light"] .site-shell .tech-tag,
+:root[data-theme="light"] .site-shell .project-tag,
+:root[data-theme="light"] .site-shell .technology-tag {
+  color: #405166;
+  background: #edf2f7;
+  border-color: rgba(23, 33, 43, 0.13);
+}
+
+/* Links */
+:root[data-theme="light"] .site-shell a:not(.hero-button) {
+  text-decoration-color: rgba(8, 127, 140, 0.35);
+}
+
+/* Inputs and placeholders */
+:root[data-theme="light"] .site-shell input,
+:root[data-theme="light"] .site-shell textarea,
+:root[data-theme="light"] .site-shell select {
+  color: #17212b;
+  background: #ffffff;
+  border-color: rgba(23, 33, 43, 0.2);
+}
+
+:root[data-theme="light"] .site-shell input::placeholder,
+:root[data-theme="light"] .site-shell textarea::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+/* Preserve accent color for highlighted headings and labels */
+:root[data-theme="light"] .site-shell .text-teal-300,
+:root[data-theme="light"] .site-shell .text-teal-400,
+:root[data-theme="light"] .site-shell .text-cyan-300 {
+  color: #087f8c !important;
 }

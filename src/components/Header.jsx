@@ -1,133 +1,108 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  ArrowUpRight,
-  Languages,
   Menu,
   X,
+  Sun,
+  Moon,
+  Languages,
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useTheme } from "../context/ThemeContext";
 import "./Header.css";
 
-const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { language, toggleLanguage, t } = useLanguage();
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { language, toggleLanguage } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 16);
-    };
+  const navItems =
+    language === "de"
+      ? [
+          { label: "Startseite", href: "#home" },
+          { label: "Über mich", href: "#about" },
+          { label: "Projekte", href: "#projects" },
+          { label: "Erfahrung", href: "#experience" },
+          { label: "Kontakt", href: "#contact" },
+        ]
+      : [
+          { label: "Home", href: "#home" },
+          { label: "About", href: "#about" },
+          { label: "Projects", href: "#projects" },
+          { label: "Experience", href: "#experience" },
+          { label: "Contact", href: "#contact" },
+        ];
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isMobileMenuOpen]);
-
-  const navItems = [
-    { label: t("nav.about"), id: "about" },
-    { label: t("nav.skills"), id: "skills" },
-    { label: t("nav.projects"), id: "projects" },
-    { label: t("nav.experience"), id: "experience" },
-    { label: t("nav.contact"), id: "contact" },
-  ];
-
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-    setIsMobileMenuOpen(false);
-  };
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`}>
-      <nav className="site-nav" aria-label="Main navigation">
-        <button
-          className="site-brand"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Back to top"
+    <header className="site-header">
+      <nav className="header-nav" aria-label="Main navigation">
+        <a
+          className="header-brand"
+          href="#home"
+          onClick={closeMenu}
+          aria-label="Go to homepage"
         >
           <span className="brand-mark">M</span>
-          <span className="brand-divider" />
-          <span className="brand-caption">MITEN MISTRY</span>
-        </button>
+          <span className="brand-name">Miten Mistry</span>
+          <span className="brand-dot">.</span>
+        </a>
 
-        <div className="desktop-nav">
+        <div className={`header-links ${menuOpen ? "is-open" : ""}`}>
           {navItems.map((item) => (
-            <button
-              key={item.id}
-              className="nav-link"
-              onClick={() => scrollToSection(item.id)}
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={closeMenu}
+              className="header-link"
             >
               {item.label}
-            </button>
+            </a>
           ))}
         </div>
 
-        <div className="nav-actions">
+        <div className="header-actions">
           <button
-            className="language-toggle"
+            type="button"
+            className="header-icon-button"
             onClick={toggleLanguage}
             aria-label={
-              language === "en"
-                ? "Switch language to German"
-                : "Switch language to English"
+              language === "de"
+                ? "Switch language to English"
+                : "Sprache auf Deutsch umstellen"
             }
+            title={language === "de" ? "English" : "Deutsch"}
           >
-            <Languages size={15} aria-hidden="true" />
-            <span>{language === "en" ? "EN" : "DE"}</span>
+            <Languages size={18} />
+            <span>{language === "de" ? "DE" : "EN"}</span>
           </button>
 
           <button
-            className="nav-contact"
-            onClick={() => scrollToSection("contact")}
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
-            <span>{t("nav.contact")}</span>
-            <ArrowUpRight size={15} aria-hidden="true" />
+            {theme === "dark" ? (
+              <Sun size={19} />
+            ) : (
+              <Moon size={19} />
+            )}
           </button>
 
           <button
-            className="mobile-menu-toggle"
-            onClick={() => setIsMobileMenuOpen((open) => !open)}
-            aria-expanded={isMobileMenuOpen}
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            type="button"
+            className="mobile-menu-button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
           >
-            {isMobileMenuOpen ? <X size={21} /> : <Menu size={21} />}
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </nav>
-
-      {isMobileMenuOpen && (
-        <div className="mobile-nav">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              className="mobile-nav-link"
-              onClick={() => scrollToSection(item.id)}
-            >
-              {item.label}
-              <ArrowUpRight size={16} aria-hidden="true" />
-            </button>
-          ))}
-
-          <button className="mobile-language" onClick={toggleLanguage}>
-            <Languages size={16} aria-hidden="true" />
-            {language === "en" ? "Switch to Deutsch" : "Switch to English"}
-          </button>
-        </div>
-      )}
     </header>
   );
-};
-
-export default Header;
+}

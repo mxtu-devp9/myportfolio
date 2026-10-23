@@ -628,3 +628,33 @@
     transform: none;
   }
 }
+
+
+/* Theme-aware hero surfaces */
+.hero-section {
+  color: var(--text-primary);
+}
+
+.hero-description,
+.hero-greeting,
+.hero-scroll-indicator {
+  color: var(--text-secondary);
+}
+
+.hero-workspace,
+.hero-location-card,
+.hero-toolkit-card,
+.hero-profile-card {
+  border-color: var(--border-color);
+  box-shadow: 0 16px 40px var(--shadow-color);
+}
+
+.hero-location-card,
+.hero-toolkit-card,
+.hero-profile-card {
+  background: var(--surface-bg);
+  color: var(--text-primary);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+

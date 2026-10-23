@@ -494,3 +494,35 @@
     transform: none;
   }
 }
+
+
+/* Theme-aware project cards */
+.projects-section {
+  color: var(--text-primary);
+}
+
+.project-card {
+  border-color: var(--border-color);
+  background: var(--surface-bg);
+  color: var(--text-primary);
+  box-shadow: 0 14px 36px var(--shadow-color);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.project-card p,
+.project-description {
+  color: var(--text-secondary);
+}
+
+.project-filter {
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.project-filter.active,
+.project-filter[aria-pressed="true"] {
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #071014;
+}
